@@ -6,6 +6,8 @@ export default function App(){
   const [peso, setPeso] = useState('');
   const [altura, setAltura] = useState('');
 
+  const [mensagem, setMensagem] = useState('');
+
   function calcImc(){
     const alt = altura / 100
     const imc = peso / (alt * alt)
@@ -13,6 +15,28 @@ export default function App(){
     if(peso === "" || altura === ""){
       alert("por favor preencha os campos!")
       return;
+    }
+
+    if(imc < 18.6){
+      setMensagem("Você está abaixo do peso! Seu IMC: " + imc.toFixed(2))
+      setAltura('');
+      setPeso('');
+    }else if(imc > 18.6 && imc <24.9){
+      setMensagem("Você está no peso ideal! Seu IMC: " + imc.toFixed(2))
+      setAltura('');
+      setPeso('');
+    }else if(imc > 24.9 && imc < 34.9){
+      setMensagem("Você está levemente acima do peso! Seu IMC: " + imc.toFixed(2))
+      setAltura('');
+      setPeso('');
+    }else if(imc > 34.9 && imc < 45.9){
+      setMensagem("Voce está obeso! Seu IMC: " + imc.toFixed(2))
+      setAltura('');
+      setPeso('');
+    }else {
+      setMensagem("Vai morrerrrr! Seu IMC: " + imc.toFixed(2))
+      setAltura('');
+      setPeso('');
     }
   }
 
@@ -42,7 +66,7 @@ export default function App(){
 
       </div>
 
-      <h2>Seu IMC foi de: #comentário</h2>
+      <h2>{mensagem}</h2>
     </div>
   )
 }
